@@ -5,10 +5,12 @@ const fs = require('fs');
 const ncp = require('ncp');
 const mkdirp = require('mkdirp');
 
+__filename = path.resolve();
+
 function hostPackageDir(file) {
   var pathComponents = file.split(path.sep);
   var modulesDirIndex = pathComponents.lastIndexOf('node_modules');
-  if (modulesDirIndex < 1) return undefined;
+  if (modulesDirIndex < 1) return process.cwd();
 
   return pathComponents.slice(0, modulesDirIndex).join(path.sep);
 }
